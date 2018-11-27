@@ -2,11 +2,11 @@
 lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
 
-require 'vidibus/words'
+require 'vidibus/version'
 
 Gem::Specification.new do |s|
   s.name        = 'vidibus-words'
-  s.version     = Vidibus::Words::VERSION
+  s.version     = Vidibus::Version::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = 'Andre Pankratz'
   s.email       = 'andre@vidibus.com'
@@ -25,9 +25,12 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rdoc'
   s.add_development_dependency 'rspec'
-  s.add_development_dependency 'rr'
   s.add_development_dependency 'simplecov'
 
-  s.files = Dir.glob('{lib,app,config}/**/*') + %w[LICENSE README.md Rakefile]
-  s.require_path = 'lib'
+  s.files         = `find *`.split("\n").uniq.sort.select{|f| !f.empty? }
+  s.test_files    = `find spec/*`.split("\n")
+  s.executables   = []
+  s.require_paths = ["lib"]
+  #s.files = Dir.glob('{lib,app,config}/**/*') + %w[LICENSE README.md Rakefile]
+  #s.require_path = 'lib'
 end

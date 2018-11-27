@@ -1,13 +1,12 @@
 # encoding: utf-8
 module Vidibus
   class Words
-    VERSION = '0.0.4'
-
     class MissingLocaleError < StandardError; end
 
     def initialize(input, loc = [])
       @input = input || ''
       self.locale = loc
+      I18n.enforce_available_locales = false
     end
 
     def input
@@ -42,7 +41,7 @@ module Vidibus
         list = []
         count = 0
         _stopwords = Vidibus::Words.stopwords(*locales)
-        for word in sort
+        sort.each do |word|
           clean = word.permalink.gsub('-','')
           unless _stopwords.include?(clean)
             list << word
@@ -61,7 +60,7 @@ module Vidibus
       def stopwords(*locales)
         locales = I18n.available_locales if locales.empty?
         stopwords = []
-        for locale in locales
+        locales.each do |locale|
           translation = I18n.t('vidibus.stopwords', :locale => locale)
           next if translation.is_a?(String)
           stopwords << translation

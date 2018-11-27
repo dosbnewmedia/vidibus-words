@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'spec_helper'
 
-describe Vidibus::Words do
+RSpec.describe Vidibus::Words do
   describe 'initialization' do
     it 'should require an input string' do
       expect {Vidibus::Words.new}.to raise_error(ArgumentError)
@@ -25,7 +25,7 @@ describe Vidibus::Words do
 
   describe 'to_a' do
     it 'should call Vidibus::Words.words with input string' do
-      stub(Vidibus::Words.words('Whazzup?'))
+      expect(Vidibus::Words).to receive(:words).with('Whazzup?')
       Vidibus::Words.new('Whazzup?').to_a
     end
   end
@@ -33,7 +33,7 @@ describe Vidibus::Words do
   describe 'sort' do
     it 'should call Vidibus::Words.sort_by_occurrence with list' do
       words = Vidibus::Words.new('Whazzup?')
-      stub(Vidibus::Words.sort_by_occurrence(words.list))
+      expect(Vidibus::Words).to receive(:sort_by_occurrence).with(words.list)
       words.sort
     end
   end

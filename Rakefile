@@ -1,4 +1,4 @@
-require 'bundler'
+require "bundler/gem_tasks"
 require 'rdoc/task'
 require 'rspec'
 require 'rspec/core/rake_task'
