@@ -15,11 +15,11 @@ Gem::Specification.new do |s|
   s.description = 'Contains stop words lists and methods to extract keywords from strings.'
   s.license     = 'MIT'
 
-  s.required_rubygems_version = '>= 1.3.6'
+  s.required_rubygems_version = '>= 3'
   s.rubyforge_project         = 'vidibus-words'
 
-  s.add_dependency 'rails', '>= 3'
-  s.add_dependency 'vidibus-core_extensions', '>= 0.4.1'
+  s.add_dependency 'rails', '>= 6'
+  s.add_dependency 'vidibus-core_extensions', '>= 0.4.1', branch: 'mongoid-7'
 
   s.add_development_dependency 'bundler', '>= 1.0.0'
   s.add_development_dependency 'rake'
